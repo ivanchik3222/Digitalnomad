@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали Хоккейного Матча - Мой Город</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    header {
+        background: #333;
+        color: #fff;
+        padding: 10px 0;
+    }
+
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .nav-menu li {
+        margin: 0 15px;
+    }
+
+    .nav-menu a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .nav-menu a:hover {
+        text-decoration: underline;
+    }
+
+    .event-details-container {
+        display: flex;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .event-image img {
+        width: 400px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-info {
+        flex: 2;
+    }
+
+    .event-meta {
+        flex: 1;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-meta h3 {
+        margin-top: 0;
+        color: #007bff;
+    }
+
+    .buy-ticket-button {
+        display: inline-block;
+        background-color: #ff6600;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
+
+    .buy-ticket-button:hover {
+        background-color: #e65c00;
+    }
+
+    .age-limit {
+        background-color: #ff6600;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    .show-more {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 10px;
+    }
+
+    .show-more:hover {
+        text-decoration: underline;
+    }
+
+    #emergency {
+        background: #dc3545;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    #emergency-button {
+        background: #fff;
+        color: #dc3545;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #emergency-button:hover {
+        background: #e6e6e6;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/">События</a></li>
+                <li><a href="#">Услуги</a></li>
+                <li><a href="#">Отзывы</a></li>
+                <li><a href="#">Экстренная помощь</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="event-details">
+            <div class="event-details-container">
+                <div class="event-image">
+                    <img src="{{ event[4] }}">
+                </div>
+                <div class="event-info">
+                    <h1>{{ event[1] }}</h1>
+                    <h3>ОПИСАНИЕ</h3>
+                    <p>{{ event[3] }}</p>
+                    <a target="_blank" class="buy-ticket-button" href="https://ticketon.kz/petropavlovsk/event/match-hk-qulager-vvs-nomad?item_list_name=%D0%A1%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D1%8F&item_list_id=allEvents&index=2">участвовать</a>
+                </div>
+                <div class="event-meta">
+                    <h3>МЕСТО ПРОВЕДЕНИЯ</h3>
+                    <p>{{ event[6] }}</p>
+                    <h3>ДАТА ПРОВЕДЕНИЯ</h3>
+                    <p>{{ event[2][:10] }}</p>
+                    <h3>НАЧАЛО</h3>
+                    <p>{{ event[2][11:] }}</p>
+                    <!-- <h3>ДОПОЛНИТЕЛЬНО</h3>
+                    <p>Детям до 5 лет вход бесплатный без предоставления места. Пенсионерам, инвалидам всех групп – бесплатно с предоставлением места. Для получения бесплатного билета необходимо предоставить подтверждающие документы в кассе во ДС А.Винокурова.</p>
+                    <h3>ЖАНР</h3>
+                    <p>хоккей</p>
+                    <h3>ВОЗРАСТНОЕ ОГРАНИЧЕНИЕ</h3>
+                    <div class="age-limit">
+                        <span>0+</span>
+                    </div> -->
+                    <!-- <a href="#" class="show-more">Скрыть</a> -->
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <section id="emergency">
+            <h2>Экстренная помощь</h2>
+            <button id="emergency-button">Вызвать экстренные службы</button>
+        </section>
+        <p>&copy; 2024 Мой Город. Все права защищены.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const emergencyButton = document.getElementById('emergency-button');
+            emergencyButton.addEventListener('click', () => {
+                alert('Вызов экстренных служб инициирован!');
+            });
+        });
+    </script>
+</body>
+</html>

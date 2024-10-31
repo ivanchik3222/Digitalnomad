@@ -3,6 +3,8 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 
+
+
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure key
 DATABASE = 'database.db'
@@ -44,7 +46,8 @@ def init_db():
                             description TEXT NOT NULL,
                             img TEXT NOT NULL,
                             author TEXT NOT NULL,
-                            adress TEXT NOT NULL)''')
+                            adress TEXT NOT NULL,
+                            cost INTEGER)''')
 
         # Create the repairs table
         cursor.execute('''CREATE TABLE IF NOT EXISTS repairs(
@@ -90,14 +93,6 @@ def load_user(user_id):
         return User(user_data[0], user_data[1], user_data[2])
     return None
 
-@app.route('/')
-def index():
-    """Display the main page with the list of users."""
-    db = get_db()
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM users")
-    users = cursor.fetchall()
-    return render_template('index.html', users=users, current_user=current_user)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -122,7 +117,7 @@ def register():
         db.commit()
 
         flash('Registration successful! You can now log in.')
-        return redirect(url_for('login'))
+        return redirect('/login')
 
     return render_template('register.html')
 
@@ -139,7 +134,7 @@ def login():
         if user_data and check_password_hash(user_data[3], password):  # Check hashed password
             user = User(user_data[0], user_data[1], user_data[2])
             login_user(user)
-            return redirect(url_for('index'))
+            return redirect('/')
         else:
             flash('Invalid email or password')
     return render_template('login.html')
@@ -149,20 +144,60 @@ def login():
 def logout():
     """Log out the user."""
     logout_user()
-    return redirect(url_for('index'))
+    return redirect('/')
 
-@app.route('/add_user', methods=['POST'])
-def add_user():
-    """Add a new user to the database."""
-    name = request.form['name']
-    email = request.form['email']
-    password = generate_password_hash(request.form['password'])  # Hash the password
+# @app.route('/add_user', methods=['POST'])
+# def add_user():
+#     """Add a new user to the database."""
+#     name = request.form['name']
+#     email = request.form['email']
+#     password = generate_password_hash(request.form['password'])  # Hash the password
+#     db = get_db()
+#     cursor = db.cursor()
+#     cursor.execute("INSERT INTO users (name, email, password, lvl) VALUES (?, ?, ?, ?)", (name, email, password, 0))
+#     db.commit()
+#     return redirect('/')
+
+@app.route('/add_event', methods=['POST', 'GET'])
+def add_event():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    else:
+        if request.method == 'POST':
+            title = request.form['title']
+            date = request.form['date']
+            description = request.form['description']
+            img = request.form['image']
+            author = current_user.name
+            adress = request.form['location']
+            cost = request.form['price']
+            db = get_db()
+            cursor = db.cursor()
+            cursor.execute("INSERT INTO events (title, date, description, img, author, adress, cost) VALUES (?, ?, ?, ?, ?, ?, ?)", (title, date, description, img, author, adress, cost))
+            db.commit()
+            return redirect('/')
+        return render_template('add_event.html')
+
+@app.route('/', methods=['GET'])
+def events():
+    """Display the list of events."""
     db = get_db()
     cursor = db.cursor()
-    cursor.execute("INSERT INTO users (name, email, password, lvl) VALUES (?, ?, ?, ?)", (name, email, password, 0))
-    db.commit()
-    return redirect(url_for('index'))
+    cursor.execute("SELECT * FROM events")
+    events = cursor.fetchall()
+    return render_template('events.html', events=events)
 
+@app.route('/event/<id>', methods=['GET'])
+def event(id):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM events WHERE id = ?", (id,))
+    event = cursor.fetchone()
+    print(event)
+    if event is not None:
+        return render_template('event.html', event=event)
+    else:
+        return "not found"
 
 if __name__ == '__main__':
     init_db()  # Initialize the database

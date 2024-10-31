@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Город - Главная</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='events.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/">События</a></li>
+                <li><a href="#not now">Услуги</a></li>
+                <li><a href="#not now">Отзывы</a></li>
+                <li><a href="#not now">Экстренная помощь</a></li>
+                <li><a href="/add_event">добавить событие</a></li>
+                <li><a href="/login">Регистрация и Вход</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="hero">
+            <h1>Добро пожаловать в приложение "Мой Город"!</h1>
+            <p>Помогаем вам быть в курсе событий, сервисов и удобств в вашем городе.</p>
+        </section>
+        
+        <section id="events" class="card-section">
+            <h2>Городские события</h2>
+            <div id="event-cards" class="cards">
+                {% for event in events %}
+                    <div class="card">
+                        <a href="/event/{{ event[0] }}">
+                            <img src="{{ event[4] }}" class="event-image">
+                        </a>
+                        <div class="card-content">
+                            <h3><a href="/event/{{event[0]}}">{{ event[1] }}</a></h3>
+                            <p>{{ event[3] }}</p>
+                            <div class="event-details">
+                                <div class="event-date">
+                                    <span class="material-icons"><b>Дата:</b></span>
+                                    <p>{{ event[2] }}</p>
+                                </div>
+                                <div class="event-location">
+                                    <span class="material-icons"><b>Локация:</b></span>
+                                    <p>{{ event[6] }}</p>
+                                </div>
+                                <div class="event-price">
+                                    <span class="material-icons"><b>Цена:</b></span>
+                                    <p>{{ event[7] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    
+    <footer>
+        <p>&copy; 2024 Мой Город. Все права защищены.</p>
+    </footer>
+</body>
+</html>

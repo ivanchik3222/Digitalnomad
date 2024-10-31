@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить событие</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_event.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="/">Главная</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <h2>Добавить новое событие</h2>
+            <form id="addEventForm" method="POST">
+                <label for="title">Название события:</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="description">Описание:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+
+                <label for="date">Дата и время:</label>
+                <input type="datetime-local" id="date" name="date" required>
+
+                <label for="location">Место проведения:</label>
+                <input type="text" id="location" name="location" required>
+
+                <label for="price">Цена:</label>
+                <input type="text" id="price" name="price" required>
+
+                <label for="image">Ссылка на изображение:</label>
+                <input type="url" id="image" name="image" required>
+
+                <button type="submit">Добавить событие</button>
+            </form>
+            <p id="successMessage" style="display:none;">Событие успешно добавлено!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Мой Город. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
