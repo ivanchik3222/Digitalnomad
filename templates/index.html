@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main page</title>
+</head>
+<body>
+    <center>
+        <h1>great site</h1>
+    </center>
+    <h3>data:</h3>
+    {% for user in users %}
+        <li>{{ user[1] }} ({{ user[2] }})</li>
+    {% endfor %}
+
+    <center>
+        <p>become user</p>
+        <form action="/add_user" method="post">
+            <input type="text" name="name" placeholder="name" class="form_input">
+            <input type="text" name="email" placeholder="email" class="form_input">
+            <input type="text" name="password" placeholder="password" class="form_input">
+            <button type="submit">submit</button>
+        </form>
+    </center>
+</body> 
+</html>
