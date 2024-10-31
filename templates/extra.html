@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экстренные службы</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='extra.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1>Служба экстренной помощи</h1>
+        <p>Быстрый доступ к помощи в один клик</p>
+    </header>
+
+    <main class="main-content">
+        <div class="card">
+            <h2>Вызов экстренных служб</h2>
+            <button class="button-primary" onclick="showEmergencyOptions()">Вызвать экстренную службу</button>
+            <div id="emergency-options" class="emergency-options" style="display: none;">
+                <button class="button-option" onclick="callService('Скорая помощь')">Скорая помощь</button>
+                <button class="button-option" onclick="callService('Полиция')">Полиция</button>
+                <button class="button-option" onclick="callService('Пожарные')">Пожарные</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Сообщение родным с геолокацией</h2>
+            <button class="button-secondary" onclick="sendLocation()">Отправить сообщение с геолокацией</button>
+            <p id="status"></p>
+        </div>
+        <button onclick="window.location.href='/'" class="back-button">Назад на главную</button>
+
+    </main>
+
+    <script>
+        // Функция для показа меню выбора службы
+        function showEmergencyOptions() {
+            document.getElementById("emergency-options").style.display = "block";
+        }
+
+        // Функция для вызова конкретной службы
+        function callService(serviceName) {
+            let phoneNumber;
+
+            switch(serviceName) {
+                case 'Скорая помощь':
+                    phoneNumber = '112'; // Номер для вызова скорой помощи
+                    break;
+                case 'Полиция':
+                    phoneNumber = '102'; // Номер для вызова полиции
+                    break;
+                case 'Пожарные':
+                    phoneNumber = '101'; // Номер для вызова пожарных
+                    break;
+                default:
+                    alert('Неправильный выбор службы!');
+                    return;
+            }
+
+            // Перенаправление на номер телефона
+            window.location.href = `tel:${phoneNumber}`;
+        }
+
+        function sendLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    alert(`Сообщение отправлено: широта ${latitude}, долгота ${longitude}`);
+                    document.getElementById("status").innerText = "Сообщение отправлено с текущей геолокацией.";
+                }, () => {
+                    alert("Не удалось получить геолокацию.");
+                    document.getElementById("status").innerText = "Не удалось получить геолокацию.";
+                });
+            } else {
+                alert("Ваш браузер не поддерживает геолокацию.");
+                document.getElementById("status").innerText = "Ваш браузер не поддерживает геолокацию.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+.login-form {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+.login-form {
+    font-size: 14px;
+    color: #555;
+}
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.login-form button:hover {
+    background-color: #45a049;
+}
+
+a{
+    display: inline-block; /* Делает кнопку блочным элементом */
+    padding: 12px 20px; /* Внутренние отступы */
+    background-color: #4CAF50; /* Основной цвет фона */
+    color: white; /* Цвет текста */
+    font-size: 16px; /* Размер шрифта текста */
+    text-align: center; /* Выравнивание текста по центру */
+    text-decoration: none; /* Убирает подчеркивание */
+    border-radius: 5px; /* Скругленные углы */
+    cursor: pointer; /* Курсор */
+    transition: background-color 0.3s; /* Плавное изменение цвета */
+    margin: 10px 0;
+}

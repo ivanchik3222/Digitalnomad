@@ -47,6 +47,7 @@ def init_db():
                             img TEXT NOT NULL,
                             author TEXT NOT NULL,
                             adress TEXT NOT NULL,
+                            register TEXT NOT NULL,
                             cost INTEGER)''')
 
         # Create the repairs table
@@ -171,9 +172,10 @@ def add_event():
             author = current_user.name
             adress = request.form['location']
             cost = request.form['price']
+            register = request.form['register']
             db = get_db()
             cursor = db.cursor()
-            cursor.execute("INSERT INTO events (title, date, description, img, author, adress, cost) VALUES (?, ?, ?, ?, ?, ?, ?)", (title, date, description, img, author, adress, cost))
+            cursor.execute("INSERT INTO events (title, date, description, img, author, adress, cost,register) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (title, date, description, img, author, adress, cost,register))
             db.commit()
             return redirect('/')
         return render_template('add_event.html')
@@ -198,6 +200,14 @@ def event(id):
         return render_template('event.html', event=event)
     else:
         return "not found"
+    
+@app.route('/extra', methods=['GET'])
+def extreme():
+    return render_template('extra.html')
+
+@app.route('/services', methods=['GET'])
+def services():
+    return render_template('services.html')
 
 if __name__ == '__main__':
     init_db()  # Initialize the database

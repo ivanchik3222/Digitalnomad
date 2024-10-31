@@ -1,0 +1,129 @@
+body {
+    background-color: #F4F5F7;
+    color: #2E2E2E;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #2E2E2E;
+    margin-bottom: 8px;
+}
+
+p {
+    color: #555;
+    font-size: 16px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-height: none; /* Уберите ограничение высоты */
+    overflow-y: auto; /* Разрешите вертикальную прокрутку */
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%; /* Убедитесь, что ширина 100% */
+}
+
+.card {
+    background-color: #FFFFFF;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+.button-primary {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.button-primary:hover {
+    background-color: #3AAFA9;
+}
+
+.button-secondary {
+    background-color: #3AAFA9;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.button-secondary:hover {
+    background-color: #4CAF50;
+}
+
+.emergency-options {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-option {
+    padding: 8px;
+    background-color: #FF6F61;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.button-option:hover {
+    background-color: #F08070;
+}
+
+#status {
+    margin-top: 15px;
+    color: #FF6F61;
+    font-size: 14px;
+}
+
+.back-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Зеленый фон */
+    color: white; /* Белый текст */
+    border: none; /* Без границ */
+    border-radius: 4px; /* Скругленные углы */
+    cursor: pointer; /* Указатель курсора */
+    font-size: 16px; /* Размер шрифта */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.back-button:hover {
+    background-color: #45a049;
+}

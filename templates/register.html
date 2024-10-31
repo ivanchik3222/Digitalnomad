@@ -1,20 +1,30 @@
-<!-- register.html -->
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
 </head>
 <body>
-    <h1>Register</h1>
-    <form method="POST">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Register</button>
+
+<div class="registration-form">
+    <h2>Регистрация</h2>
+    <form action="/register" method="POST">
+        <label for="username">Имя пользователя</label>
+        <input type="text" id="username" name="name" required>
+
+        <label for="email">Электронная почта</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Зарегистрироваться</button>
     </form>
-    <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
-    <a href="/">Go to Home</a>
+    <div class="login">
+        <a href="/login">Уже есть аккаунт? Войти</a>
+    </div>
+</div>
 </body>
 </html>

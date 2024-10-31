@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #263238;
+    color: #fff;
+}
+
+header {
+    background: #4a5b63;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin: 0 15px;
+    text-align: center;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+.register-button {
+    background: #FFC107;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.register-button:hover {
+    background: #FF9800;
+}
+
+.services-section {
+    padding: 50px;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 3px solid #FF9800;
+}
+
+.service-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.qr-code {
+    width: 150px;
+    height: 150px;
+    margin-left: 20px;
+}
+
+.service-info {
+    flex: 1;
+}
+
+.service-info h3 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #FFC107;
+}
+
+.service-info p {
+    margin: 10px 0;
+    font-size: 1em;
+    color: #FF9800;
+}
+
+.service-action {
+    display: flex;
+    gap: 10px;
+}
+
+.service-action a, .service-action button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.contact-button {
+    background: #28a745;
+}
+
+.web-button {
+    background: #FFC107;
+}
+
+.map-button {
+    background: #007bff;
+}
+
+#map-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+#map-modal iframe {
+    width: 80%;
+    height: 80%;
+    border: 0;
+}
