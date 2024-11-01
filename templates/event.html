@@ -3,21 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Детали Хоккейного Матча - Мой Город</title>
+    <title>Детали События - Мой Город</title>
 <style>
     body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
-        color: #333;
+        background-color: #263238;
+        color: #fff;
     }
 
     header {
-        background: #333;
+        background: #263739;
         color: #fff;
         padding: 10px 0;
+    }
+
+    .register-button {
+        background: #FFC107;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+    }
+    
+    .register-button:hover {
+        background: #FF9800;
     }
 
     .nav-menu {
@@ -62,7 +76,7 @@
 
     .event-meta {
         flex: 1;
-        background: #fff;
+        background-color: #263739;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -98,18 +112,6 @@
         display: inline-block;
     }
 
-    .show-more {
-        color: #007bff;
-        text-decoration: none;
-        font-weight: bold;
-        display: inline-block;
-        margin-top: 10px;
-    }
-
-    .show-more:hover {
-        text-decoration: underline;
-    }
-
     #emergency {
         background: #dc3545;
         color: #fff;
@@ -130,17 +132,46 @@
     #emergency-button:hover {
         background: #e6e6e6;
     }
+    footer {
+    background-color: #263739;
+    color: #FF9800;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #FF9800;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.footer-button:hover {
+    background-color: #FF6F61;
+}
 </style>
 </head>
 <body>
     <header>
         <nav>
-            <ul class="nav-menu">
-                <li><a href="/">Главная</a></li>
-                <li><a href="/">События</a></li>
-                <li><a href="#">Услуги</a></li>
-                <li><a href="#">Отзывы</a></li>
-                <li><a href="#">Экстренная помощь</a></li>
+            <ul class="nav-menu" style="background-color: #263739;">
+                <li style="margin: 0 15px;"><a href="/" >Главная</a></li>
+                <li style="margin: 0 15px;"><a href="/">События</a></li>
+                <li style="margin: 0 15px;"><a href="/services">Услуги</a></li>
+                <li style="margin: 0 15px;"><a href="/extra">Экстренная помощь</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="register-container"><a href="/logout" class="register-button" style="margin-right: 15px;">выйти</a></li>
+                {% else %}
+                <li class="register-container"><a href="/login" class="register-button" style="margin-right: 15px;">войти/зарегестрироваться</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
@@ -149,50 +180,31 @@
         <section id="event-details">
             <div class="event-details-container">
                 <div class="event-image">
-                    <img src="{{ event[4] }}">
+                    <img src="{{ event[4] }}" alt="Вечеринка 2000-х">
                 </div>
                 <div class="event-info">
-                    <h1>{{ event[1] }}</h1>
+                    <h1 style="color: #FF9800;">{{ event[1] }}</h1>
                     <h3>ОПИСАНИЕ</h3>
                     <p>{{ event[3] }}</p>
-                    <a target="_blank" class="buy-ticket-button" href="https://ticketon.kz/petropavlovsk/event/match-hk-qulager-vvs-nomad?item_list_name=%D0%A1%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D1%8F&item_list_id=allEvents&index=2">участвовать</a>
+                    <a target="_blank" class="buy-ticket-button" href="{{ event[7] }}">Купить билет</a>
                 </div>
                 <div class="event-meta">
                     <h3>МЕСТО ПРОВЕДЕНИЯ</h3>
                     <p>{{ event[6] }}</p>
-                    <h3>ДАТА ПРОВЕДЕНИЯ</h3>
+                    
+                    <h3>ДАТА</h3>
                     <p>{{ event[2][:10] }}</p>
-                    <h3>НАЧАЛО</h3>
+                    <h3>ВРЕМЯ</h3>
                     <p>{{ event[2][11:] }}</p>
-                    <!-- <h3>ДОПОЛНИТЕЛЬНО</h3>
-                    <p>Детям до 5 лет вход бесплатный без предоставления места. Пенсионерам, инвалидам всех групп – бесплатно с предоставлением места. Для получения бесплатного билета необходимо предоставить подтверждающие документы в кассе во ДС А.Винокурова.</p>
-                    <h3>ЖАНР</h3>
-                    <p>хоккей</p>
-                    <h3>ВОЗРАСТНОЕ ОГРАНИЧЕНИЕ</h3>
-                    <div class="age-limit">
-                        <span>0+</span>
-                    </div> -->
-                    <!-- <a href="#" class="show-more">Скрыть</a> -->
+                    
                 </div>
             </div>
         </section>
     </main>
     
     <footer>
-        <section id="emergency">
-            <h2>Экстренная помощь</h2>
-            <button id="emergency-button">Вызвать экстренные службы</button>
-        </section>
-        <p>&copy; 2024 Мой Город. Все права защищены.</p>
+        <p>С уважением команда ITshechka.<br>© 2024 My City. Все права защищены.</p>
+        <a href="/resources" class="footer-button">Ресурсы</a>
     </footer>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const emergencyButton = document.getElementById('emergency-button');
-            emergencyButton.addEventListener('click', () => {
-                alert('Вызов экстренных служб инициирован!');
-            });
-        });
-    </script>
 </body>
 </html>

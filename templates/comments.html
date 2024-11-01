@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comments</title>
+</head>
+<body>
+   <a href="/">назад</a>
+   {% for comment in comments %}
+   <div>
+       <!-- <p>{{ comment }}</p> -->
+        <h3>{{ comment[1] }}</h3>
+        <p>{{ comment[3] }}stars</p>
+        <p>{{ comment[4] }} likes</p>
+        <form action="/like/{{current_user.id}}/{{comment[0]}}" method="POST"><button type="submit">поставить лайк</button></form>
+   </div>
+   {% endfor %}
+
+   <form action="/comments" method="POST">
+    <input type="text" name="comment" placeholder="отзыв" required>
+    <input type="number" name="rating" min="1" max="5" placeholder="рейтинг" required>
+    <button type="submit">добавить отзыв</button>
+   </form>
+</body>
+</html>

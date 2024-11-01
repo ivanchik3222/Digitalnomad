@@ -4,45 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой Город - Главная</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='events.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
     <header>
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo">
         <nav>
-            <ul class="nav-menu">
-                <li><a href="/">Главная</a></li>
-                <li><a href="/">События</a></li>
-                <li><a href="/services">Услуги</a></li>
-                <li><a href="#not now">Отзывы</a></li>
-                <li><a href="/extra">Экстренная помощь</a></li>
-                <li><a href="/add_event">добавить событие</a></li>
+            <ul class="nav-menu" style="background-color: #263739">
+                <li style="margin: 0 15px;"><a href="/" >Главная</a></li>
+                <li style="margin: 0 15px;"><a href="/">События</a></li>
+                <li style="margin: 0 15px;"><a href="/services">Услуги</a></li>
+                <li style="margin: 0 15px;"><a href="/extra">Экстренная помощь</a></li>
+                <!-- <li class="register-container"><a href="my city.html" class="register-button" style="margin-right: 15px;">Регистрация и Вход</a></li> -->
                 {% if current_user.is_authenticated %}
-                <li><a href="/logout">выйти</a></li>
+                <li class="register-container"><a href="/logout" class="register-button" style="margin-right: 15px;">выйти</a></li>
                 {% else %}
-                <li><a href="/login">войти/зарегестрироваться</a></li>
+                <li class="register-container"><a href="/login" class="register-button" style="margin-right: 15px;">войти/зарегестрироваться</a></li>
                 {% endif %}
-                <!-- <li><a href="/login">Регистрация и Вход</a></li> -->
-                
             </ul>
         </nav>
     </header>
     
     <main>
-        <section id="hero">
-            <h1>Добро пожаловать в приложение "Мой Город"!</h1>
-            <p>Помогаем вам быть в курсе событий, сервисов и удобств в вашем городе.</p>
+        <section id="hero" style="background-image: URL({{ url_for('static', filename='img/img_2004.jpg') }})">
+            <div class="overlay"></div>
+            <h1>Добро пожаловать в Петропавловск!</h1>
+            <p>Будьте в курсе событий, сервисов и удобств в вашем городе вместе с <b>My City.</b></p>
         </section>
         
-        <section id="events" class="card-section">
-            <h2>Городские события</h2>
+        <section id="events" class="card-section" style="background-color: #263238; color: #fff;">
+            <h2 style="margin-left: 780px;">Городские события</h2>
             <div id="event-cards" class="cards">
                 {% for event in events %}
-                    <div class="card">
-                        <a href="/event/{{ event[0] }}">
+                    <div class="card" style="border: 4px solid #FF9800;">
+                        <a href="/event/{{ event[0] }}" class="ev">
                             <img src="{{ event[4] }}" class="event-image">
                         </a>
                         <div class="card-content">
-                            <h3><a href="/event/{{event[0]}}">{{ event[1] }}</a></h3>
+                            <h3 id="qwe"><a href="/event/{{event[0]}}">{{ event[1] }}</a></h3>
                             <p>{{ event[3] }}</p>
                             <div class="event-details">
                                 <div class="event-date">
@@ -62,10 +61,29 @@
                     </div>
                 {% endfor %}
             </div>
+            <br>
+            <form id="comment-form" action="/add_event" method="GET">
+                <button type="submit">добавить событие</button>
+            </form>
+        </section>
+        <section id="reviews">
+            <h2>Оставить комментарий о событии</h2>
+            <form id="comment-form" action="/submit-comment" method="POST">
+                <label for="event-name">Название события:</label>
+                <input type="text" id="event-name" name="event-name" required placeholder="Введите название события">
+
+                <label for="comment">Ваш комментарий:</label>
+                <textarea id="comment" name="comment" required placeholder="Введите ваш комментарий" rows="4"></textarea>
+
+                <button type="submit">Отправить комментарий</button>
+            </form>
         </section>
     
-    <footer>
-        <p>&copy; 2024 Мой Город. Все права защищены.</p>
-    </footer>
+        <footer>
+            <p>С уважением команда ITshechka.<br>© 2024 My City. Все права защищены.</p>
+            <a href="/resources" class="footer-button">Ресурсы</a>
+        </footer>
+    
+        <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 </html>

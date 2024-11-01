@@ -7,18 +7,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 <body>
-    <div class="login-form">
+    <div class="login-form" style="border: 4px solid #FF9800;">
         <h2>Вход</h2>
         <form action="/login" method="POST">
-            <label for="username">email</label>
-            <input type="text" id="username" name="email" required>
+            <label for="username" style="color: #FF9800;">email</label>
+            <input type="text" id="username" name="email" required style="border: 4px solid #FF9800;">
 
-            <label for="password">Пароль</label>
-            <input type="password" id="password" name="password" required>
+            <label for="password" style="color: #FF9800;">Пароль</label>
+            <input type="password" id="password" name="password" required style="border: 4px solid #FF9800;">
     
             <button type="submit">Войти</button>
         </form>
-        <a href="/register">нет аккаунта? Зарегистрироваться</a>
+        <form action="/register" method="GET"><button type="submit" style="width: 50%;">регистрация</button></form>
+        <form action="/" method="GET"><button type="submit" style="width: 50%;">главная</button></form>
     </div>
 </body>
 </html>

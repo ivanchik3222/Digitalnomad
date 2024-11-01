@@ -8,23 +8,25 @@
 </head>
 <body>
 
-<div class="registration-form">
+<div class="registration-form" style="color: #FF9800;">
     <h2>Регистрация</h2>
     <form action="/register" method="POST">
-        <label for="username">Имя пользователя</label>
-        <input type="text" id="username" name="name" required>
+        <label for="username" style="color: #FF9800;">Имя пользователя</label>
+        <input type="text" id="username" name="name" required style="border: 4px solid #FF9800;">
 
-        <label for="email">Электронная почта</label>
-        <input type="email" id="email" name="email" required>
+        <label for="email" style="color: #FF9800;">Электронная почта</label>
+        <input type="email" id="email" name="email" required style="border: 4px solid #FF9800;">
 
-        <label for="password">Пароль</label>
-        <input type="password" id="password" name="password" required>
+        <label for="password" style="color: #FF9800;">Пароль</label>
+        <input type="password" id="password" name="password" required style="border: 4px solid #FF9800;">
 
         <button type="submit">Зарегистрироваться</button>
     </form>
-    <div class="login">
-        <a href="/login">Уже есть аккаунт? Войти</a>
-    </div>
+    <div class="back-button-container">
+    <a href="/login" class="back-button">вход</a>
+    <a href="/" class="back-button">главная</a>
 </div>
+</div>
+
 </body>
 </html>

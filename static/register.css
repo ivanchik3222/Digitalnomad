@@ -4,38 +4,90 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f9;
+    background-color: #263238; /* Задний фон страницы */
 }
+
 .registration-form {
     width: 300px;
     padding: 20px;
-    background-color: #fff;
+    background-color: #263739; /* Цвет фона формы */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 .registration-form h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
+    color: #FF9800; /* Цвет заголовка h2 */
 }
+
 .registration-form label {
     font-size: 14px;
-    color: #555;
+    color: #263739; /* Цвет текста меток */
 }
+
 .registration-form input[type="text"],
 .registration-form input[type="email"],
 .registration-form input[type="password"] {
     width: 100%;
     padding: 8px;
     margin: 8px 0 16px;
-    border: 1px solid #ddd;
+    border: 1px solid #ddd; /* Цвет рамки полей ввода */
     border-radius: 4px;
     box-sizing: border-box;
 }
+
 .registration-form button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #FF9800; /* Основной цвет кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Без границ */
+    border-radius: 4px; /* Скругленные углы */
+    cursor: pointer; /* Указатель курсора */
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.registration-form button:hover {
+    background-color: #FF6F61; /* Цвет кнопки при наведении */
+}
+
+.login-form {
+    width: 300px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border: 4px solid #FF9800;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.login-form h2 {
+    color: #FF9800;
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    display: block;
+    margin-top: 10px;
+    color: #FF9800;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 4px solid #FF9800;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #FF9800;
     color: white;
     border: none;
     border-radius: 4px;
@@ -43,20 +95,34 @@ body {
     font-size: 16px;
     margin-top: 10px;
 }
-button:hover {
-    background-color: #45a049;
+
+.login-form button[type="submit"]:hover {
+    background-color: #FF6F61;
 }
 
-a{
-    display: inline-block; /* Делает кнопку блочным элементом */
-    padding: 12px 20px; /* Внутренние отступы */
-    background-color: #4CAF50; /* Основной цвет фона */
-    color: white; /* Цвет текста */
-    font-size: 16px; /* Размер шрифта текста */
-    text-align: center; /* Выравнивание текста по центру */
-    text-decoration: none; /* Убирает подчеркивание */
-    border-radius: 5px; /* Скругленные углы */
-    cursor: pointer; /* Курсор */
-    transition: background-color 0.3s; /* Плавное изменение цвета */
-    margin: 10px 0;
+.back-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+    /* margin: 20px auto; */
+    margin-block-start: 10px;
+    padding: 10px 20px;
+    background-color: #FF9800;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    font-size: 16px;
+    /* width: 50%; */
+}
+
+.back-button:hover {
+    background-color: #FF6F61;
+}
+.back-button-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }

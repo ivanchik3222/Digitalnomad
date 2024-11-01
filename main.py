@@ -1,6 +1,6 @@
-from flask import Flask, render_template, g, redirect, url_for, request, flash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import *
+from flask_login import *
+from werkzeug.security import *
 import sqlite3
 
 
@@ -50,22 +50,31 @@ def init_db():
                             register TEXT NOT NULL,
                             cost INTEGER)''')
 
-        # Create the repairs table
-        cursor.execute('''CREATE TABLE IF NOT EXISTS repairs(
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            title TEXT NOT NULL,
-                            description TEXT NOT NULL,
-                            adress TEXT NOT NULL,
-                            date TEXT NOT NULL)''')
 
-        # Create the voitings table
-        cursor.execute('''CREATE TABLE IF NOT EXISTS voitings(
+        cursor.execute('''CREATE TABLE IF NOT EXISTS comments(
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            title TEXT NOT NULL,
-                            author INTEGER NOT NULL,
-                            variants TEXT NOT NULL,
-                            results TEXT NOT NULL,
-                            voiters TEXT NOT NULL)''')
+                            content TEXT NOT NULL,
+                            owner INTEGER NOT NULL,
+                            rating INTEGER NOT NULL,
+                            likes INTEGER NOT NULL,
+                            liked_by TEXT)''')
+
+        # Create the repairs table
+        # cursor.execute('''CREATE TABLE IF NOT EXISTS repairs(
+        #                     id INTEGER PRIMARY KEY AUTOINCREMENT,
+        #                     title TEXT NOT NULL,
+        #                     description TEXT NOT NULL,
+        #                     adress TEXT NOT NULL,
+        #                     date TEXT NOT NULL)''')
+
+        # # Create the voitings table
+        # cursor.execute('''CREATE TABLE IF NOT EXISTS voitings(
+        #                     id INTEGER PRIMARY KEY AUTOINCREMENT,
+        #                     title TEXT NOT NULL,
+        #                     author INTEGER NOT NULL,
+        #                     variants TEXT NOT NULL,
+        #                     results TEXT NOT NULL,
+        #                     voiters TEXT NOT NULL)''')
         
         db.commit()
 
@@ -208,6 +217,50 @@ def extreme():
 @app.route('/services', methods=['GET'])
 def services():
     return render_template('services.html')
+
+@app.route('/comments', methods=['GET', 'POST'])
+def comments():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    else:
+        if request.method == 'GET':
+            db = get_db()
+            cursor = db.cursor()
+            cursor.execute("SELECT * FROM comments")
+            comments = cursor.fetchall()
+            return render_template('comments.html' , comments=comments)
+        else:
+            comment = request.form['comment']
+            rating = request.form['rating']
+            owner = current_user.id
+            db = get_db()
+            cursor = db.cursor()
+            cursor.execute("INSERT INTO comments (content, rating, likes, owner,liked_by) VALUES (?, ?, ?, ?,?)", (comment, rating, 0, owner,[]))
+            db.commit()
+            return redirect('/comments')
+
+# @app.route('/like/<int:user_id>/<int:comment_id>', methods=['POST'])
+# def like(user_id, comment_id):
+#     db = get_db()    
+#     cursor = db.cursor()
+#     cursor.execute("SELECT * FROM comments WHERE id = ?", (comment_id,))
+#     comment = cursor.fetchone()
+#     if comment is not None:
+#         cursor.execute("UPDATE comments SET likes = likes + 1 WHERE id = ?", (comment_id,))
+#         db.commit()
+#         cursor.execute("SELECT * FROM comments WHERE id = ?", (comment_id,))
+#         users_liked = cursor.fetchone()[4]
+#         return redirect('/comments')
+#     cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
+#     user = cursor.fetchone()
+#     if (user is not None) and (str(user) not in users_liked):
+#         cursor.execute("UPDATE users SET lvl = lvl + 1 WHERE id = ?", (user_id,))
+#         users_liked = users_liked.append(str(user))
+#         db.commit()
+
+@app.route('/resources', methods=['GET'])
+def resources():
+    return render_template('resources.html')
 
 if __name__ == '__main__':
     init_db()  # Initialize the database
