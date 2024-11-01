@@ -1,7 +1,7 @@
 /* Основные стили */
 body {
     font-family: Arial, sans-serif;
-    background-color: #F4F5F7;
+    background-color: #263739;
     color: #2E2E2E;
     margin: 0;
     display: flex;
@@ -14,7 +14,7 @@ body {
 /* Стили для хедера */
 header {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: #FF9800;
     padding: 10px 0;
 }
 
@@ -84,6 +84,7 @@ form textarea {
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
+    border-color:#FF9800;
 }
 
 form textarea {
@@ -94,7 +95,7 @@ form textarea {
 button[type="submit"] {
     width: 100%;
     padding: 12px;
-    background-color: #4CAF50;
+    background-color: #FF9800;
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -104,13 +105,13 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #FF9800;
 }
 
 /* Сообщение об успешном добавлении */
 #successMessage {
     text-align: center;
-    color: #4CAF50;
+    color: #FF9800;
     font-weight: bold;
     margin-top: 10px;
 }
