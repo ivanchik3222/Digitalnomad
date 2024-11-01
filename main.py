@@ -53,11 +53,9 @@ def init_db():
 
         cursor.execute('''CREATE TABLE IF NOT EXISTS comments(
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            title TEXT NOT NULL,
                             content TEXT NOT NULL,
-                            owner INTEGER NOT NULL,
-                            rating INTEGER NOT NULL,
-                            likes INTEGER NOT NULL,
-                            liked_by TEXT)''')
+                            owner TEXT NOT NULL)''')
 
         # Create the repairs table
         # cursor.execute('''CREATE TABLE IF NOT EXISTS repairs(
@@ -191,12 +189,28 @@ def add_event():
 
 @app.route('/', methods=['GET'])
 def events():
-    """Display the list of events."""
+    
     db = get_db()
     cursor = db.cursor()
     cursor.execute("SELECT * FROM events")
     events = cursor.fetchall()
-    return render_template('events.html', events=events)
+    cursor.execute("SELECT * FROM comments")
+    comments = cursor.fetchall()
+    return render_template('events.html', events=events , comments=comments)
+
+@app.route('/add_comment', methods=['POST'])
+def add_comment():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    else:
+        title = request.form['title']
+        content = request.form['content']
+        owner = current_user.name
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO comments (title, content, owner) VALUES (?, ?, ?)", (title, content, owner))
+        db.commit()
+        return redirect('/')
 
 @app.route('/event/<id>', methods=['GET'])
 def event(id):
@@ -218,45 +232,6 @@ def extreme():
 def services():
     return render_template('services.html')
 
-@app.route('/comments', methods=['GET', 'POST'])
-def comments():
-    if not current_user.is_authenticated:
-        return redirect(url_for('login'))
-    else:
-        if request.method == 'GET':
-            db = get_db()
-            cursor = db.cursor()
-            cursor.execute("SELECT * FROM comments")
-            comments = cursor.fetchall()
-            return render_template('comments.html' , comments=comments)
-        else:
-            comment = request.form['comment']
-            rating = request.form['rating']
-            owner = current_user.id
-            db = get_db()
-            cursor = db.cursor()
-            cursor.execute("INSERT INTO comments (content, rating, likes, owner,liked_by) VALUES (?, ?, ?, ?,?)", (comment, rating, 0, owner,[]))
-            db.commit()
-            return redirect('/comments')
-
-# @app.route('/like/<int:user_id>/<int:comment_id>', methods=['POST'])
-# def like(user_id, comment_id):
-#     db = get_db()    
-#     cursor = db.cursor()
-#     cursor.execute("SELECT * FROM comments WHERE id = ?", (comment_id,))
-#     comment = cursor.fetchone()
-#     if comment is not None:
-#         cursor.execute("UPDATE comments SET likes = likes + 1 WHERE id = ?", (comment_id,))
-#         db.commit()
-#         cursor.execute("SELECT * FROM comments WHERE id = ?", (comment_id,))
-#         users_liked = cursor.fetchone()[4]
-#         return redirect('/comments')
-#     cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
-#     user = cursor.fetchone()
-#     if (user is not None) and (str(user) not in users_liked):
-#         cursor.execute("UPDATE users SET lvl = lvl + 1 WHERE id = ?", (user_id,))
-#         users_liked = users_liked.append(str(user))
-#         db.commit()
 
 @app.route('/resources', methods=['GET'])
 def resources():
