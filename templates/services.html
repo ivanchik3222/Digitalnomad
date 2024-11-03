@@ -10,13 +10,16 @@
 <body>
     <header>
         <nav>
-            <ul class="nav-menu" style="background-color: #3E4A4F;">
+            <ul class="nav-menu" style="background-color: #4a5b63;">
                 <li><a href="/">Главная</a></li>
                 <li><a href="/">События</a></li>
                 <li><a href="/services">Услуги</a></li>
-                <li><a href="#">Отзывы</a></li>
                 <li><a href="/extra">Экстренная помощь</a></li>
-                <li><a href="/login">Регистрация и Вход</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="register-container"><a href="/logout" class="register-button" style="margin-right: 15px;">выйти</a></li>
+                {% else %}
+                <li class="register-container"><a href="/login" class="register-button" style="margin-right: 15px;">войти/зарегестрироваться</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

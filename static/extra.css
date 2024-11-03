@@ -1,6 +1,6 @@
 body {
-    background-color: #F4F5F7;
-    color: #2E2E2E;
+    background-color: #263739; /* Задний фон страницы */
+    color: white; /* Цвет текста на странице */
     font-family: Arial, sans-serif;
     margin: 0;
     display: flex;
@@ -12,15 +12,23 @@ body {
 .header {
     text-align: center;
     margin-bottom: 20px;
+    border-radius: 8px; /* Скругленные углы */
+    padding: 10px; /* Отступы внутри меню */
+    background-color: #263739; /* Фон меню */
 }
 
 h1 {
-    color: #2E2E2E;
+    color: #FF9800; /* Цвет заголовка h1 */
     margin-bottom: 8px;
 }
 
+h2 {
+    color: #FF9800; /* Цвет заголовка h2 */
+    margin-bottom: 15px;
+}
+
 p {
-    color: #555;
+    color: #D0D0D0; /* Цвет текста параграфов */
     font-size: 16px;
 }
 
@@ -37,7 +45,7 @@ p {
 }
 
 .card {
-    background-color: #FFFFFF;
+    background-color: #4a5b63;
     padding: 20px;
     width: 300px;
     text-align: center;
@@ -45,40 +53,36 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-h2 {
-    margin-bottom: 15px;
-}
-
 .button-primary {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
+    background-color: #FF9800; /* Основной цвет кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Без границ */
     padding: 12px;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 4px; /* Скругленные углы */
+    cursor: pointer; /* Указатель курсора */
     font-size: 16px;
-    width: 100%;
-    margin-top: 10px;
+    width: 100%; /* Ширина кнопки 100% */
+    margin-top: 10px; /* Отступ сверху */
 }
 
 .button-primary:hover {
-    background-color: #3AAFA9;
+    background-color: #FF6F61; /* Цвет кнопки при наведении */
 }
 
 .button-secondary {
-    background-color: #3AAFA9;
-    color: white;
-    border: none;
+    background-color: #FF9800; /* Вторичный цвет кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Без границ */
     padding: 12px;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 4px; /* Скругленные углы */
+    cursor: pointer; /* Указатель курсора */
     font-size: 16px;
-    width: 100%;
-    margin-top: 10px;
+    width: 100%; /* Ширина кнопки 100% */
+    margin-top: 10px; /* Отступ сверху */
 }
 
 .button-secondary:hover {
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* Цвет кнопки при наведении */
 }
 
 .emergency-options {
@@ -93,30 +97,30 @@ h2 {
 
 .button-option {
     padding: 8px;
-    background-color: #FF6F61;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    background-color: #FF6F61; /* Цвет кнопки выбора */
+    color: white; /* Цвет текста на кнопке выбора */
+    border: none; /* Без границ */
+    border-radius: 4px; /* Скругленные углы */
+    cursor: pointer; /* Указатель курсора */
     font-size: 14px;
-    width: 100%;
-    margin: 5px 0;
+    width: 100%; /* Ширина кнопки 100% */
+    margin: 5px 0; /* Отступы сверху и снизу */
 }
 
 .button-option:hover {
-    background-color: #F08070;
+    background-color: #F08070; /* Цвет кнопки выбора при наведении */
 }
 
 #status {
     margin-top: 15px;
-    color: #FF6F61;
+    color: #FF6F61; /* Цвет статуса */
     font-size: 14px;
 }
 
 .back-button {
     padding: 10px 20px;
-    background-color: #4CAF50; /* Зеленый фон */
-    color: white; /* Белый текст */
+    background-color: #FF9800; /* Цвет кнопки "Назад" */
+    color: white; /* Цвет текста на кнопке "Назад" */
     border: none; /* Без границ */
     border-radius: 4px; /* Скругленные углы */
     cursor: pointer; /* Указатель курсора */
@@ -125,5 +129,5 @@ h2 {
 }
 
 .back-button:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Цвет кнопки "Назад" при наведении */
 }
