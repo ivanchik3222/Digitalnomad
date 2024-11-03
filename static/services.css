@@ -140,3 +140,33 @@ header {
     height: 80%;
     border: 0;
 }
+
+.header-with-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px; /* Отступ снизу для контейнера */
+}
+
+.header-with-button h2 {
+    margin-top: 35px; /* Убираем отступы, чтобы заголовок был выровнен по вертикали */
+}
+
+.add-service-button {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ff9800, #ff5722);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.add-service-button:hover {
+    background: linear-gradient(135deg, #ff5722, #ff9800);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}

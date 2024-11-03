@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Город - Профиль</title>
+    <link rel="stylesheet" href="../static/profile.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="../static/img/logo.png" alt="Logo" class="logo">
+            <ul class="nav-menu">
+                <li><a href="">Главная</a></li>
+                <li><a href="">События</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="extra.html">Экстренная помощь</a></li>
+                <li><a href="logout.html" class="register-button">Войти/Регистрация</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile-section">
+            <div class="profile-card">
+                <img src="../static/img/5fd531dca6427c7_upscaled.jpg" alt="Profile Picture" class="profile-picture">
+                <h2>Имя пользователя</h2>
+                <p class="user-email">user@example.com</p>
+                <button class="edit-profile-button" onclick="window.location.href='red_profile.html'">Редактировать профиль</button>
+            </div>
+            
+            <div class="profile-details">
+                <h3>Личная информация</h3>
+                <div class="detail-item">
+                    <span class="detail-title">Имя:</span>
+                    <span class="detail-value">Имя пользователя</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-title">Электронная почта:</span>
+                    <span class="detail-value">user@example.com</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-title">Номер телефона:</span>
+                    <span class="detail-value">+7 (123) 456-78-90</span>
+                </div>
+                <div class="experience-bar">
+                    <h3>Накопленный опыт</h3>
+                    <div class="experience-container">
+                        <div class="experience-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>С уважением команда ITshechka.<br>© 2024 My City. Все права защищены.</p>
+        <a href="/resources" class="footer-button">Ресурсы</a>
+    </footer>
+</body>
+</html>

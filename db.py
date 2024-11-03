@@ -52,6 +52,17 @@ def init_db(app):
                             content TEXT NOT NULL,
                             likes INTEGER NOT NULL,
                             answers TEXT)''')
+        
+        cursor.execute('''CREATE TABLE IF NOT EXISTS services (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        name TEXT NOT NULL,
+                        description TEXT NOT NULL,
+                        phone TEXT NOT NULL,
+                        website TEXT NOT NULL,
+                        coordinates TEXT NOT NULL,
+                        image_url TEXT NOT NULL,
+                        qr_code_url TEXT NOT NULL
+                    )''')
 
         db.commit()
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить событие</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_event.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="/">Главная</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="add-service-form" class="form-section">
+            <h2>Добавить новую услугу</h2>
+            <form action="/add_service" method="POST" enctype="multipart/form-data">
+                <label for="service-name">Название услуги:</label>
+                <input type="text" id="service-name" name="name" required placeholder="Введите название">
+        
+                <label for="service-description">Описание услуги:</label>
+                <textarea id="service-description" name="description" required placeholder="Введите описание" rows="4"></textarea>
+        
+                <label for="service-phone">Контактный телефон:</label>
+                <input type="tel" id="service-phone" name="phone" required placeholder="Введите телефон">
+        
+                <label for="service-website">Сайт заведения:</label>
+                <input type="url" id="service-website" name="website" required placeholder="Введите URL">
+        
+                <label for="service-coordinates">Координаты (широта, долгота):</label>
+                <input type="text" id="service-coordinates" name="coordinates" required placeholder="Введите координаты">
+        
+                <label for="service-image">Изображение (URL):</label>
+                <input type="text" id="service-image" name="image_url" required placeholder="Введите URL изображения">
+        
+                <label for="service-qr">QR-код (URL):</label>
+                <input type="text" id="service-qr" name="qr_code_url" required placeholder="Введите URL QR-кода">
+        
+                <button type="submit">Добавить услугу</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Мой Город. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>

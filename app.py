@@ -7,8 +7,8 @@ from auth_service import get_user_by_id
 from event_controller import events, add_event, add_event_route, add_event_form, event_show
 from auth_models import User
 from static_routes import resources, extra
-from services_controller import services
-from forum_controller import forum
+from services import services, add_service
+from forum import forum
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -40,6 +40,7 @@ app.add_url_rule('/extra', view_func=extra)
 
 # URL для услуг
 app.add_url_rule('/services', view_func=services)
+app.add_url_rule('/add_service', view_func=add_service, methods=['GET', 'POST'])
 
 # URL для форума
 app.add_url_rule('/forum', view_func=forum)
