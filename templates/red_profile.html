@@ -23,25 +23,35 @@
     <main>
         <section class="edit-profile-section">
             <div class="edit-profile-card">
+                
+                <h2>Загрузить изображение профиля</h2>
+                <form action="{{ url_for('upload_profile_image') }}" method="POST" enctype="multipart/form-data">
+                    <label for="file" class="upload-img">Выбрать изображение</label>
+                    <input type="file" name="file" id="file" accept="image/*" required hidden>
+
+                    <span id="file-name" class="file-name">Файл не выбран</span>
+
+                    <button type="submit" class="save-button">Загрузить изображение</button>
+                </form>
                 <h2>Редактирование Профиля</h2>
-                <form action="/update-profile" method="POST">
+                <form action="{{ url_for('set_profile') }}" method="POST">
                     <label for="username">Имя пользователя</label>
-                    <input type="text" id="username" name="username" value="Имя пользователя" required>
-
+                    <input type="text" id="username" name="username" value="{{ user['name'] }}" required>
+        
                     <label for="email">Электронная почта</label>
-                    <input type="email" id="email" name="email" value="user@example.com" required>
-
+                    <input type="email" id="email" name="email" value="{{ user['email'] }}" required>
+        
                     <label for="phone">Номер телефона</label>
-                    <input type="text" id="phone" name="phone" value="+7 (123) 456-78-90" required>
-
+                    <input type="text" id="phone" name="phone" value="{{ user['sav_days'] or '+7 (123) 456-78-90' }}" required>
+        
                     <label for="rank">Звание</label>
                     <select id="rank" name="rank">
-                        <option value="novice">Новичок</option>
-                        <option value="intermediate">Продвинутый</option>
-                        <option value="expert">Эксперт</option>
-                        <option value="master">Мастер</option>
+                        <option value="novice" {% if user['lvl'] == 'novice' %}selected{% endif %}>Новичок</option>
+                        <option value="intermediate" {% if user['lvl'] == 'intermediate' %}selected{% endif %}>Продвинутый</option>
+                        <option value="expert" {% if user['lvl'] == 'expert' %}selected{% endif %}>Эксперт</option>
+                        <option value="master" {% if user['lvl'] == 'master' %}selected{% endif %}>Мастер</option>
                     </select>
-
+        
                     <button type="submit" class="save-button">Сохранить изменения</button>
                 </form>
             </div>

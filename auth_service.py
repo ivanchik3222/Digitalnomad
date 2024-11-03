@@ -24,9 +24,16 @@ def register_user(name, email, password):
         return False  # Email уже существует
     
     # Хешируем пароль и добавляем пользователя в базу данных
+    with open('static/img/img_2004.jpg', 'rb') as file:
+        default_image_data = file.read()
+
+    # Хешируем пароль и добавляем пользователя в базу с изображением
     hashed_password = generate_password_hash(password)
-    cursor.execute("INSERT INTO users (name, email, password, lvl) VALUES (?, ?, ?, ?)", 
-                   (name, email, hashed_password, 0))
+    cursor.execute("""
+        INSERT INTO users (name, email, password, lvl, profile_image) 
+        VALUES (?, ?, ?, ?, ?)
+    """, (name, email, hashed_password, 0, default_image_data))
+    
     db.commit()
     return True
 

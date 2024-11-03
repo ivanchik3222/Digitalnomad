@@ -146,3 +146,44 @@ footer {
 .footer-button:hover {
     background-color: #FF6F61;
 }
+
+.upload-img{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload-img {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #FFC107;
+    color: #263238 !important;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    text-decoration: none; /* Убираем подчеркивание */
+    border: none;
+    outline: none;
+}
+
+.upload-img:hover {
+    background-color: #FF9800;;
+}
+
+.upload-name .file-name{
+    color: #555;
+    font-style: italic;
+}
+.file-name {
+    color: #e9e399;
+    font-style: italic;
+}
+
+/* Если файл выбран, изменяем текст */
+input[type="file"]:valid + .file-upload-button + .file-name {
+    content: 'Файл выбран'; /* Это работает в некоторых браузерах */
+    color: #e9e399;
+    font-style: normal;
+}

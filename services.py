@@ -1,5 +1,6 @@
 import sqlite3
 from flask import request, redirect, url_for, flash, render_template
+from flask_login import login_required, current_user
 from db import get_db
 
 def services():
@@ -11,7 +12,7 @@ def services():
     print(services)
     return render_template('services.html', services=services)
 
-
+@login_required
 def add_service():
     if request.method == 'POST':
     # Получаем данные из формы

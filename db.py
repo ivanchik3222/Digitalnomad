@@ -32,6 +32,7 @@ def init_db(app):
                             events TEXT,
                             sav_days TEXT,
                             friends TEXT)''')
+        cursor.execute("ALTER TABLE users ADD COLUMN profile_image BLOB;")
 
 
         cursor.execute('''CREATE TABLE IF NOT EXISTS events(

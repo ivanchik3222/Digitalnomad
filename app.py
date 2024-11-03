@@ -1,14 +1,21 @@
 # app.py
 from flask import Flask
 from flask_login import LoginManager
+
 from db import close_connection, init_db
+
 from auth_controller import register, login, logout
 from auth_service import get_user_by_id
+
 from event_controller import events, add_event, add_event_route, add_event_form, event_show
-from auth_models import User
+
 from static_routes import resources, extra
+
 from services import services, add_service
+
 from forum import forum
+
+from profile_1 import profile, set_profile, update_profile, upload_profile_image
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -44,6 +51,12 @@ app.add_url_rule('/add_service', view_func=add_service, methods=['GET', 'POST'])
 
 # URL для форума
 app.add_url_rule('/forum', view_func=forum)
+
+# URL для профиля
+app.add_url_rule('/profile', view_func=profile)
+app.add_url_rule('/red_profile', view_func=set_profile, methods=['GET', 'POST'])
+app.add_url_rule('/update_profile', view_func=update_profile, methods=['GET', 'POST'])
+app.add_url_rule('/upload_profile_image', view_func=upload_profile_image, methods=['POST'])
 
 if __name__ == '__main__':
     app.run(debug=True)

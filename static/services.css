@@ -101,6 +101,13 @@ header {
     display: flex;
     gap: 10px;
 }
+.service-else {
+    display: block;
+    text-align: center;
+    margin-top: 10%;
+    font-size: 1.8em;
+}
+
 
 .service-action a, .service-action button {
     padding: 10px 20px;
