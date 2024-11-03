@@ -1,7 +1,7 @@
 # app.py
 from flask import Flask
 from flask_login import LoginManager
-from db import close_connection
+from db import close_connection, init_db
 from auth_controller import register, login, logout
 from auth_service import get_user_by_id
 from event_controller import events, add_event, add_event_route, add_event_form, event_show
@@ -38,3 +38,4 @@ app.add_url_rule('/extra', view_func=extra)
 
 if __name__ == '__main__':
     app.run(debug=True)
+    init_db(app)
