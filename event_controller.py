@@ -27,6 +27,10 @@ def add_event_route():
 def add_event_form():
     return render_template('add_event.html')
 
+def event_show(event):
+    event = get_all_events()[event-1]
+    return render_template('event.html',event=event)
+
 
 if __name__ == '__main__':
     print("nuh uh")
