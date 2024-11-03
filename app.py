@@ -7,6 +7,8 @@ from auth_service import get_user_by_id
 from event_controller import events, add_event, add_event_route, add_event_form, event_show
 from auth_models import User
 from static_routes import resources, extra
+from services_controller import services
+from forum_controller import forum
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -35,6 +37,12 @@ app.add_url_rule('/event/<int:event_id>', view_func=lambda event_id: event_show(
 # URL для статических ресурсов
 app.add_url_rule('/resources', view_func=resources)
 app.add_url_rule('/extra', view_func=extra)
+
+# URL для услуг
+app.add_url_rule('/services', view_func=services)
+
+# URL для форума
+app.add_url_rule('/forum', view_func=forum)
 
 if __name__ == '__main__':
     app.run(debug=True)
