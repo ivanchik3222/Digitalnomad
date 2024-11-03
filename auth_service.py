@@ -40,3 +40,9 @@ def get_user_by_id(user_id):
     if user_data:
         return User(user_data[0], user_data[1], user_data[2])  # Создаем объект пользователя
     return None
+
+
+if __name__ == '__main__':
+    print("nuh uh")
+else:
+    print("import auth_service")

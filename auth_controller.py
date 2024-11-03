@@ -35,3 +35,8 @@ def logout():
     logout_user()
     flash('You have been logged out.')
     return redirect(url_for('login'))
+
+if __name__ == '__main__':
+    print("nuh uh")
+else:
+    print("import auth_controller")

@@ -7,3 +7,8 @@ class User(UserMixin):
         self.id = id
         self.name = name
         self.email = email
+
+if __name__ == '__main__':
+    print("nuh uh")
+else:
+    print("import auth_models")

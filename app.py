@@ -4,7 +4,7 @@ from flask_login import LoginManager
 from db import close_connection
 from auth_controller import register, login, logout
 from auth_service import get_user_by_id
-from event_controller import events, add_event, add_event_route
+from event_controller import events, add_event, add_event_route, add_event_form
 from auth_models import User
 
 app = Flask(__name__)
@@ -27,7 +27,9 @@ app.add_url_rule('/logout', view_func=logout)
 
 # URL для событий
 app.add_url_rule('/', view_func=events)
-app.add_url_rule('/add_event', view_func=events, methods=['GET', 'POST'])
+app.add_url_rule('/add_event', view_func=add_event_form, methods=['GET'])
+app.add_url_rule('/post_event', view_func=add_event_route, methods=['POST'])
+
 
 if __name__ == '__main__':
     app.run(debug=True)

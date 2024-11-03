@@ -22,3 +22,13 @@ def add_event_route():
         flash('Event added successfully!')
         return redirect(url_for('events'))
     return render_template('add_event.html')
+
+@login_required
+def add_event_form():
+    return render_template('add_event.html')
+
+
+if __name__ == '__main__':
+    print("nuh uh")
+else:
+    print("import event_controller")
