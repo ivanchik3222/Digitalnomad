@@ -1,0 +1,24 @@
+<h1>{{ topic[1] }}</h1>
+<p>{{ topic[2] }}</p>
+<p><small>Создано: {{ topic[3] }}</small></p>
+
+<h2>Комментарии</h2>
+<ul>
+    {% for comment in comments %}
+        <li>
+            <p>{{ comment[1] }}</p>
+            <small>{{ comment[2] }}</small>
+        </li>
+    {% endfor %}
+</ul>
+
+{% if current_user.is_authenticated %}
+<form method="post">
+    <label for="content">Добавить комментарий:</label>
+    <textarea name="content" id="content" required></textarea>
+    <button type="submit">Отправить</button>
+</form>
+
+{% else %}
+    <p>Войдите, чтобы оставить комментарий.</p>
+{% endif %}

@@ -49,15 +49,27 @@ def init_db(app):
                             type TEXT NOT NULL)''')
 
 
-        cursor.execute('''CREATE TABLE IF NOT EXISTS comments(
+        cursor.execute('''CREATE TABLE IF NOT EXISTS topics (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            owner_name TEXT NOT NULL,
-                            owner_id INTEGER NOT NULL,
+                            title TEXT NOT NULL,
                             content TEXT NOT NULL,
-                            likes INTEGER NOT NULL,
-                            main_status INTEGER NOT NULL,
-                            answers TEXT)''')
+                            created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                            user_id INTEGER NOT NULL,
+                            FOREIGN KEY (user_id) REFERENCES users(id)
+                        )''')
+
+
+        cursor.execute('''CREATE TABLE IF NOT EXISTS comments (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            content TEXT NOT NULL,
+                            created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                            user_id INTEGER NOT NULL,
+                            topic_id INTEGER NOT NULL,
+                            FOREIGN KEY (user_id) REFERENCES users(id),
+                            FOREIGN KEY (topic_id) REFERENCES topics(id)
+                        )''')
         
+
         cursor.execute('''CREATE TABLE IF NOT EXISTS services (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         name TEXT NOT NULL,

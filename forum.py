@@ -1,22 +1,51 @@
-from flask import render_template, request
-from flask_login import current_user
+from flask import *
+from flask_login import *
 
 from db import get_db
 
 def forum():
-    if request.method == 'POST':
-        content = request.form['content']
-        main_status = request.form['main_status']
-        likes = 0
-        owner_name = current_user.name
-        owner_id = current_user.id
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT id, title, created_at FROM topics ORDER BY created_at DESC")
+    topics = cursor.fetchall()
+    return render_template('forum.html', topics=topics)
 
+@login_required
+def new_topic():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
         db = get_db()
         cursor = db.cursor()
-        cursor.execute("INSERT INTO posts (content, main_status, likes, owner_name, owner_id) VALUES (?, ?, ?, ?, ?)", (content, main_status, likes, owner_name, owner_id))
+        cursor.execute("INSERT INTO topics (title, content, user_id) VALUES (?, ?, ?)", 
+                       (title, content, current_user.id))
         db.commit()
+        flash("Тема успешно создана!", "success")
+        return redirect(url_for('forum'))
+    return render_template('new_topic.html')
 
-    return render_template('forum.html')
+def topic(topic_id):
+    db = get_db()
+    cursor = db.cursor()
+
+    # Получение информации о теме
+    cursor.execute("SELECT * FROM topics WHERE id = ?", (topic_id,))
+    topic = cursor.fetchone()
+
+    # Получение комментариев
+    cursor.execute("SELECT * FROM comments WHERE topic_id = ? ORDER BY created_at ASC", (topic_id,))
+    comments = cursor.fetchall()
+
+    # Обработка формы добавления комментария
+    if request.method == 'POST':
+        content = request.form['content']
+        cursor.execute("INSERT INTO comments (content, user_id, topic_id) VALUES (?, ?, ?)", 
+                       (content, current_user.id, topic_id))
+        db.commit()
+        flash("Комментарий добавлен!", "success")
+        return redirect('/forum/topic/' + str(topic_id))
+
+    return render_template('topic.html', topic=topic, comments=comments)
 
 if __name__ == '__main__':
     print("nuh uh")

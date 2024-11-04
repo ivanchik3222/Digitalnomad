@@ -13,7 +13,7 @@ from static_routes import resources, extra
 
 from services import services, add_service
 
-from forum import forum
+from forum import forum, topic, new_topic
 
 from profile_1 import profile, set_profile, update_profile, upload_profile_image
 
@@ -39,7 +39,7 @@ app.add_url_rule('/logout', view_func=logout)
 app.add_url_rule('/', view_func=events)
 app.add_url_rule('/add_event', view_func=add_event_form, methods=['GET'])
 app.add_url_rule('/post_event', view_func=add_event_route, methods=['POST'])
-app.add_url_rule('/event/<int:event_id>', view_func=lambda event_id: event_show(event_id), endpoint='lambda1')
+app.add_url_rule('/event/<int:event_id>', view_func=lambda event_id: topic(event_id), endpoint='lambda1')
 with app.app_context():
     app.add_url_rule('/evnts_sort', view_func=sorted_events)
 
@@ -55,6 +55,8 @@ app.add_url_rule('/add_service', view_func=add_service, methods=['GET', 'POST'])
 
 # URL для форума
 app.add_url_rule('/forum', view_func=forum)
+app.add_url_rule('/forum/new', methods=['GET', 'POST'], view_func=new_topic)
+app.add_url_rule('/forum/topic/<int:topic_id>', view_func=lambda topic_id: topic(topic_id), endpoint='lambda2', methods=['GET', 'POST'])
 
 # URL для профиля
 app.add_url_rule('/profile', view_func=profile)
