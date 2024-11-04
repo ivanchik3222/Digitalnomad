@@ -7,11 +7,17 @@ def get_all_events():
     cursor.execute("SELECT * FROM events")
     return cursor.fetchall()
 
-def add_event(title, date, description, img, author, address, cost, register):
+def get_sort_events(sort):
     db = get_db()
     cursor = db.cursor()
-    cursor.execute("INSERT INTO events (title, date, description, img, author, adress, cost, register) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                   (title, date, description, img, author, address, cost, register))
+    cursor.execute("SELECT * FROM events WHERE type = ?", (sort,))
+    return cursor.fetchall()
+
+def add_event(title, date, description, img, author, address, cost, register, type):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("INSERT INTO events (title, date, description, img, author, adress, cost, register, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                   (title, date, description, img, author, address, cost, register, type))
     db.commit()
 
 

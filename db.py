@@ -31,8 +31,9 @@ def init_db(app):
                             lvl INTEGER NOT NULL,
                             events TEXT,
                             sav_days TEXT,
-                            friends TEXT)''')
-        cursor.execute("ALTER TABLE users ADD COLUMN profile_image BLOB;")
+                            friends TEXT,
+                            profile_image BLOB)''')
+        # cursor.execute("ALTER TABLE users ADD COLUMN ")
 
 
         cursor.execute('''CREATE TABLE IF NOT EXISTS events(
@@ -44,7 +45,8 @@ def init_db(app):
                             author TEXT NOT NULL,
                             adress TEXT NOT NULL,
                             register TEXT NOT NULL,
-                            cost INTEGER)''')
+                            cost INTEGER,
+                            type TEXT NOT NULL)''')
 
 
         cursor.execute('''CREATE TABLE IF NOT EXISTS comments(

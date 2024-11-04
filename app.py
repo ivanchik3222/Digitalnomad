@@ -7,7 +7,7 @@ from db import close_connection, init_db
 from auth_controller import register, login, logout
 from auth_service import get_user_by_id
 
-from event_controller import events, add_event, add_event_route, add_event_form, event_show
+from event_controller import events, add_event, add_event_route, add_event_form, event_show, sorted_events
 
 from static_routes import resources, extra
 
@@ -39,7 +39,11 @@ app.add_url_rule('/logout', view_func=logout)
 app.add_url_rule('/', view_func=events)
 app.add_url_rule('/add_event', view_func=add_event_form, methods=['GET'])
 app.add_url_rule('/post_event', view_func=add_event_route, methods=['POST'])
-app.add_url_rule('/event/<int:event_id>', view_func=lambda event_id: event_show(event_id))
+app.add_url_rule('/event/<int:event_id>', view_func=lambda event_id: event_show(event_id), endpoint='lambda1')
+with app.app_context():
+    app.add_url_rule('/evnts_sort', view_func=sorted_events)
+
+
 
 # URL для статических ресурсов
 app.add_url_rule('/resources', view_func=resources)

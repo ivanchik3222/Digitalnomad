@@ -11,11 +11,15 @@
         <nav>
             <img src="../static/img/logo.png" alt="Logo" class="logo">
             <ul class="nav-menu">
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="events.html">События</a></li>
-                <li><a href="services.html">Услуги</a></li>
-                <li><a href="extra.html">Экстренная помощь</a></li>
-                <li><a href="logout.html" class="register-button">Войти/Регистрация</a></li>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/">События</a></li>
+                <li><a href="/services">Услуги</a></li>
+                <li><a href="/extra">Экстренная помощь</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="register-container"><a href="/logout" class="register-button" style="margin-right: 15px;">выйти</a></li>
+                {% else %}
+                <li class="register-container"><a href="/login" class="register-button" style="margin-right: 15px;">войти/зарегестрироваться</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
