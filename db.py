@@ -51,9 +51,11 @@ def init_db(app):
 
         cursor.execute('''CREATE TABLE IF NOT EXISTS comments(
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            owner TEXT NOT NULL,
+                            owner_name TEXT NOT NULL,
+                            owner_id INTEGER NOT NULL,
                             content TEXT NOT NULL,
                             likes INTEGER NOT NULL,
+                            main_status INTEGER NOT NULL,
                             answers TEXT)''')
         
         cursor.execute('''CREATE TABLE IF NOT EXISTS services (
