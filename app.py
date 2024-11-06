@@ -40,9 +40,9 @@ app.add_url_rule('/logout', view_func=logout)
 app.add_url_rule('/', view_func=events)
 app.add_url_rule('/add_event', view_func=add_event_form, methods=['GET'])
 app.add_url_rule('/post_event', view_func=add_event_route, methods=['POST'])
-app.add_url_rule('/event/<int:event_id>', view_func=lambda event_id: topic(event_id), endpoint='lambda1')
+app.add_url_rule('/event/<int:event_id>', view_func=lambda event_id: event_show(event_id), endpoint='lambda1')
 with app.app_context():
-    app.add_url_rule('/evnts_sort/<string:sort>', view_func=lambda sort: get_sort_events(sort), endpoint='lambda3', methods=['GET'])
+    app.add_url_rule('/evnts_sort/<string:sort>', view_func=lambda sort: sorted_events(sort), endpoint='lambda3', methods=['GET'])
 
 
 

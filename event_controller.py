@@ -7,8 +7,7 @@ def events():
     events = get_all_events()
     return render_template('events.html', events=events)
 
-def sorted_events():
-    sort = request.args.get('sort')
+def sorted_events(sort):
     events = get_sort_events(sort)
     return render_template('events.html', events=events)
 

@@ -38,16 +38,15 @@
         
         <section id="events" class="card-section" style="background-color: #263238; color: #fff;">
             <h2 style="margin-left: 780px;">Городские события</h2>
-            <form action="/evnts_sort" method="GET">
-                <select id="event-filter" class="filter-select">
-                    <option value="all">Все</option>
-                    <option value="sport">Спорт</option>
-                    <option value="concert">Концерты</option>
-                    <option value="entertainment">Развлечения</option>
-                    <option value="other">Другое</option>
-                </select>
-                <button type="submit">Сортировать</button>
-            </form>
+            <select id="event-filter" class="filter-select" onchange="window.location.href = '/evnts_sort/' + this.value">
+                <option value="all" selected>Все</option>
+                
+                <option value="sport" >Спорт</option>
+                <option value="concert" >Концерты</option>
+                <option value="entertainment" >Развлечения</option>
+                <option value="other" >Другое</option>
+            </select>
+            
             <div id="event-cards" class="cards">
                 {% for event in events %}
                     <div class="card" style="border: 4px solid #FF9800;">
