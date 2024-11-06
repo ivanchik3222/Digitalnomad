@@ -1,6 +1,7 @@
 # auth_service.py
 import base64
 import io
+import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from db import get_db
 from auth_models import User
@@ -28,8 +29,21 @@ def register_user(name, email, password):
         return False  # Email уже существует
 
     # Хешируем пароль и добавляем пользователя в базу данных
+<<<<<<< HEAD
+=======
+# Задаем абсолютный путь к файлу
+
+
+
+
+# Проверяем наличие файла и читаем его
+
+>>>>>>> 74ab22a742a9ebc346945a6f98cb068983d27a66
     with open('/home/ivanchik322/Digitalnomad/static/img/-1.png', 'rb') as file:
         default_image_data = file.read()
+
+
+
 
     # Хешируем пароль и добавляем пользователя в базу с изображением
     hashed_password = generate_password_hash(password)
