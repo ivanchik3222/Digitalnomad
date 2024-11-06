@@ -28,21 +28,9 @@ def register_user(name, email, password):
     if cursor.fetchone() is not None:
         return False  # Email уже существует
 
-    # Хешируем пароль и добавляем пользователя в базу данных
-<<<<<<< HEAD
-=======
-# Задаем абсолютный путь к файлу
 
-
-
-
-# Проверяем наличие файла и читаем его
-
->>>>>>> 74ab22a742a9ebc346945a6f98cb068983d27a66
     with open('/home/ivanchik322/Digitalnomad/static/img/-1.png', 'rb') as file:
         default_image_data = file.read()
-
-
 
 
     # Хешируем пароль и добавляем пользователя в базу с изображением
