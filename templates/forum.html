@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой Город - Главная</title>
+    <title>форум</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
@@ -27,7 +27,7 @@
     </header>
     
     <h1>Форум</h1>
-<a href="{{ url_for('new_topic') }}">Создать новую тему</a>
+<a href="/forum/new">Создать новую тему</a>
 <ul>
     {% for topic in topics %}
         <li>
@@ -41,6 +41,5 @@
             <a href="/resources" class="footer-button">Ресурсы</a>
         </footer>
     
-        <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 </html>
