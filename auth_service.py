@@ -21,23 +21,23 @@ def register_user(name, email, password):
     """Register a new user in the database."""
     db = get_db()
     cursor = db.cursor()
-    
+
     # Проверка, существует ли уже пользователь с таким email
     cursor.execute("SELECT * FROM users WHERE email = ?", (email,))
     if cursor.fetchone() is not None:
         return False  # Email уже существует
-    
+
     # Хешируем пароль и добавляем пользователя в базу данных
-    with open('static/img/-1.png', 'rb') as file:
+    with open('/home/ivanchik322/Digitalnomad/static/img/-1.png', 'rb') as file:
         default_image_data = file.read()
 
     # Хешируем пароль и добавляем пользователя в базу с изображением
     hashed_password = generate_password_hash(password)
     cursor.execute("""
-        INSERT INTO users (name, email, password, lvl, profile_image) 
+        INSERT INTO users (name, email, password, lvl, profile_image)
         VALUES (?, ?, ?, ?, ?)
     """, (name, email, hashed_password, 0, default_image_data))
-    
+
     db.commit()
     return True
 
