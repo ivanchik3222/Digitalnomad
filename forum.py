@@ -22,7 +22,7 @@ def new_topic():
         db.commit()
         flash("Тема успешно создана!", "success")
         return redirect(url_for('forum'))
-    return render_template('new_topic.html')
+    return redirect(url_for('forum'))
 
 def topic(topic_id):
     db = get_db()

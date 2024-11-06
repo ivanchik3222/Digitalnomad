@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой Город - Главная</title>
+    <title>My City - Главная</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
     <header>
-        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo">
         <nav>
-            <ul class="nav-menu" style="background-color: #263739">
-                <li style="margin: 0 15px;"><a href="/" >Главная</a></li>
-                <li style="margin: 0 15px;"><a href="/">События</a></li>
-                <li style="margin: 0 15px;"><a href="/services">Услуги</a></li>
-                <li style="margin: 0 15px;"><a href="/extra">Экстренная помощь</a></li>
-                <li style="margin: 0 15px;"><a href="/forum">форум</a></li>
-                <!-- <li class="register-container"><a href="my city.html" class="register-button" style="margin-right: 15px;">Регистрация и Вход</a></li> -->
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo">
+            <ul class="nav-menu">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/">События</a></li>
+                <li><a href="/services">Услуги</a></li>
+                <li><a href="/extra">Экстренная помощь</a></li>
+                <li><a href="/forum">Форум</a></li>
+                <li style="margin: 0 15px;"><a href="/notifications">Уведомления</a></li>
                 {% if current_user.is_authenticated %}
                 <li class="register-container"><a href="/logout" class="register-button" style="margin-right: 15px;">выйти</a></li>
                 {% else %}
                 <li class="register-container"><a href="/login" class="register-button" style="margin-right: 15px;">войти/зарегестрироваться</a></li>
                 {% endif %}
             </ul>
+            <a href="/profile" class="profile-button">
+                <img src="/current_image" alt="Профиль" class="profile-icon">
+            </a>
         </nav>
     </header>
     
@@ -36,11 +39,12 @@
         <section id="events" class="card-section" style="background-color: #263238; color: #fff;">
             <h2 style="margin-left: 780px;">Городские события</h2>
             <form action="/evnts_sort" method="GET">
-                <select name="sort" id="sort">
-                    <option value="default">По умолчанию</option>
-                    <option value="sport">sport</option>
-                    <option value="politics">Политика</option>
-                    <option value="business">Бизнес</option>  
+                <select id="event-filter" class="filter-select">
+                    <option value="all">Все</option>
+                    <option value="sport">Спорт</option>
+                    <option value="concert">Концерты</option>
+                    <option value="entertainment">Развлечения</option>
+                    <option value="other">Другое</option>
                 </select>
                 <button type="submit">Сортировать</button>
             </form>

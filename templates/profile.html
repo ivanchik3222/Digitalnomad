@@ -11,11 +11,11 @@
         <nav>
             <img src="../static/img/logo.png" alt="Logo" class="logo">
             <ul class="nav-menu">
-                <li><a href="">Главная</a></li>
-                <li><a href="">События</a></li>
-                <li><a href="services">Услуги</a></li>
-                <li><a href="extra">Экстренная помощь</a></li>
-                <li><a href="logout" class="register-button">выйти</a></li>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/">События</a></li>
+                <li><a href="/services">Услуги</a></li>
+                <li><a href="/extra">Экстренная помощь</a></li>
+                <li><a href="/logout" class="register-button">выйти</a></li>
             </ul>
         </nav>
     </header>
@@ -23,7 +23,7 @@
     <main>
         <section class="profile-section">
             <div class="profile-card">
-                <img src="data:image/jpeg;base64,{{ profile_image }}" alt="Profile Picture" class="profile-picture">
+                <img src="/current_image" alt="Profile Picture" class="profile-picture">
                 <h2>{{ user['name'] }}</h2>
                 <p class="user-email">{{ user['email'] }}</p>
                 <button class="edit-profile-button" onclick="window.location.href='red_profile'">Редактировать профиль</button>
@@ -46,7 +46,7 @@
                 <div class="experience-bar">
                     <h3>Накопленный опыт</h3>
                     <div class="experience-container">
-                        <div class="experience-progress" style="width: {{ user['lvl'] * 10 }}%;"></div>
+                        <div class="experience-progress" style="width: {{ user['lvl'] * 10 }};%"></div>
                     </div>
                 </div>
             </div>

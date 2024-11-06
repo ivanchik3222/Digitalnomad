@@ -5,10 +5,11 @@ from flask_login import LoginManager
 from db import close_connection, init_db
 
 from auth_controller import register, login, logout
-from auth_service import get_user_by_id
+from auth_service import get_user_by_id, current_profile_image
 
 from event_controller import events, add_event, add_event_route, add_event_form, event_show, sorted_events
 
+from event_service import get_sort_events
 from static_routes import resources, extra
 
 from services import services, add_service
@@ -41,7 +42,7 @@ app.add_url_rule('/add_event', view_func=add_event_form, methods=['GET'])
 app.add_url_rule('/post_event', view_func=add_event_route, methods=['POST'])
 app.add_url_rule('/event/<int:event_id>', view_func=lambda event_id: topic(event_id), endpoint='lambda1')
 with app.app_context():
-    app.add_url_rule('/evnts_sort', view_func=sorted_events)
+    app.add_url_rule('/evnts_sort/<string:sort>', view_func=lambda sort: get_sort_events(sort), endpoint='lambda3', methods=['GET'])
 
 
 
@@ -63,6 +64,7 @@ app.add_url_rule('/profile', view_func=profile)
 app.add_url_rule('/red_profile', view_func=set_profile, methods=['GET', 'POST'])
 app.add_url_rule('/update_profile', view_func=update_profile, methods=['GET', 'POST'])
 app.add_url_rule('/upload_profile_image', view_func=upload_profile_image, methods=['POST'])
+app.add_url_rule('/current_image', view_func=current_profile_image, methods=['GET'])
 
 if __name__ == '__main__':
     app.run(debug=True)

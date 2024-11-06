@@ -8,6 +8,8 @@ def get_all_events():
     return cursor.fetchall()
 
 def get_sort_events(sort):
+    if sort == "all":
+        return get_all_events()
     db = get_db()
     cursor = db.cursor()
     cursor.execute("SELECT * FROM events WHERE type = ?", (sort,))

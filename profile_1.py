@@ -38,6 +38,8 @@ def set_profile():
     if request.method == 'POST':
         name = request.form['username']
         email = request.form['email']
+
+
         # Обновление данных в базе
         db = get_db()
         cursor = db.cursor()
@@ -115,7 +117,7 @@ def upload_profile_image():
         # Проверка на случай отсутствия данных в файле
         if img_data is None:
             flash('Ошибка загрузки изображения.')
-            return redirect(url_for('profile'))
+            return redirect('/events')
 
         # Сохраняем бинарные данные изображения в базе данных
         db = get_db()

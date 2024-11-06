@@ -1,7 +1,11 @@
 # auth_service.py
+import base64
+import io
 from werkzeug.security import generate_password_hash, check_password_hash
 from db import get_db
 from auth_models import User
+from flask  import *
+from flask_login import current_user
 
 
 def authenticate_user(email, password):
@@ -24,7 +28,7 @@ def register_user(name, email, password):
         return False  # Email уже существует
     
     # Хешируем пароль и добавляем пользователя в базу данных
-    with open('static/img/img_2004.jpg', 'rb') as file:
+    with open('static/img/-1.png', 'rb') as file:
         default_image_data = file.read()
 
     # Хешируем пароль и добавляем пользователя в базу с изображением
@@ -48,6 +52,16 @@ def get_user_by_id(user_id):
         return User(user_data[0], user_data[1], user_data[2])  # Создаем объект пользователя
     return None
 
+def current_profile_image():
+    if not current_user.is_authenticated:
+        return send_file('static/img/-1.png', mimetype="image/png")
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT profile_image FROM users WHERE id = ?", (current_user.id,))
+    user_data = cursor.fetchone()
+    if user_data:
+        image_stream = io.BytesIO(user_data[0])
+        return send_file(image_stream, mimetype="image/png")
 
 if __name__ == '__main__':
     print("nuh uh")
