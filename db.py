@@ -2,7 +2,7 @@
 from flask import g
 import sqlite3
 
-DATABASE = 'database.db'
+DATABASE = '/home/ivanchik322/mysite/database.db'
 
 def get_db():
     """Connect to the database and return the connection."""
@@ -68,7 +68,7 @@ def init_db(app):
                             FOREIGN KEY (user_id) REFERENCES users(id),
                             FOREIGN KEY (topic_id) REFERENCES topics(id)
                         )''')
-        
+
 
         cursor.execute('''CREATE TABLE IF NOT EXISTS services (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
