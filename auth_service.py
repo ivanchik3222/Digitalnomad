@@ -1,6 +1,7 @@
 # auth_service.py
 import base64
 import io
+import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from db import get_db
 from auth_models import User
@@ -28,6 +29,7 @@ def register_user(name, email, password):
         return False  # Email уже существует
     
     # Хешируем пароль и добавляем пользователя в базу данных
+    file_path = os.path.join(os.path.dirname(__file__), 'static', 'img', '-1.png')
     with open('static/img/-1.png', 'rb') as file:
         default_image_data = file.read()
 
