@@ -2,7 +2,7 @@
 from flask import g
 import sqlite3
 
-DATABASE = '/home/ivanchik322/mysite/database.db'
+DATABASE = '/home/ivanchik322/Digitalnomad/database.db'
 
 def get_db():
     """Connect to the database and return the connection."""
