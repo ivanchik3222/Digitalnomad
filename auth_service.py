@@ -29,9 +29,17 @@ def register_user(name, email, password):
         return False  # Email уже существует
     
     # Хешируем пароль и добавляем пользователя в базу данных
-    file_path = os.path.join(os.path.dirname(__file__), 'static', 'img', '-1.png')
-    with open('static/img/-1.png', 'rb') as file:
-        default_image_data = file.read()
+# Задаем абсолютный путь к файлу
+    file_path = '/home/ivanchik322/Digitalnomad/static/img/-1.png'
+
+# Проверяем, что файл существует перед открытием
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as file:
+            default_image_data = file.read()
+    else:
+        print("File not found:", file_path)
+
+
 
     # Хешируем пароль и добавляем пользователя в базу с изображением
     hashed_password = generate_password_hash(password)
