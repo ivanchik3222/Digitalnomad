@@ -9,7 +9,7 @@ from auth_service import get_user_by_id, current_profile_image
 
 from event_controller import events, add_event, add_event_route, add_event_form, event_show, sorted_events
 
-from event_service import get_sort_events
+from event_service import get_sort_events, delete_event
 from static_routes import resources, extra
 
 from services import services, add_service
@@ -43,6 +43,7 @@ app.add_url_rule('/post_event', view_func=add_event_route, methods=['POST'])
 app.add_url_rule('/event/<int:event_id>', view_func=lambda event_id: event_show(event_id), endpoint='lambda1')
 with app.app_context():
     app.add_url_rule('/evnts_sort/<string:sort>', view_func=lambda sort: sorted_events(sort), endpoint='lambda3', methods=['GET'])
+app.add_url_rule('/event_delete/<int:event_id>', view_func=lambda event_id: delete_event(event_id), methods=['GET'], endpoint='lambda4')
 
 
 
