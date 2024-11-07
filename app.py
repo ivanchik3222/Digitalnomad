@@ -4,15 +4,15 @@ from flask_login import LoginManager
 
 from db import close_connection, init_db
 
-from auth_controller import register, login, logout
+from auth_controller import get_name, register, login, logout
 from auth_service import get_user_by_id, current_profile_image
 
-from event_controller import events, add_event, add_event_route, add_event_form, event_show, sorted_events
+from event_controller import events, add_event_route, add_event_form, event_show, sorted_events
 
-from event_service import get_sort_events, delete_event
+from event_service import delete_event
 from static_routes import resources, extra
 
-from services import services, add_service
+from services import delete_service, services, add_service
 
 from forum import forum, topic, new_topic
 
@@ -54,11 +54,13 @@ app.add_url_rule('/extra', view_func=extra)
 # URL для услуг
 app.add_url_rule('/services', view_func=services)
 app.add_url_rule('/add_service', view_func=add_service, methods=['GET', 'POST'])
+app.add_url_rule('/service_delete/<int:service_id>', view_func=lambda service_id: delete_service(service_id), methods=['GET'], endpoint='lambda6')
 
 # URL для форума
 app.add_url_rule('/forum', view_func=forum)
 app.add_url_rule('/forum/new', methods=['GET', 'POST'], view_func=new_topic)
 app.add_url_rule('/forum/topic/<int:topic_id>', view_func=lambda topic_id: topic(topic_id), endpoint='lambda2', methods=['GET', 'POST'])
+app.add_url_rule('/get_name/<int:id>', view_func=lambda id: get_name(id), methods=['GET'], endpoint='lambda5')
 
 # URL для профиля
 app.add_url_rule('/profile', view_func=profile)

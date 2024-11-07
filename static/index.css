@@ -484,3 +484,51 @@ footer {
 .event-details div {
     margin: 5px 0;
 }
+
+.new-topic-button {
+    text-decoration: none;
+    color: #37474F;
+    background-color: #FF9800;
+    border-radius: 5px;
+    padding: 5px;
+    /* width: 100%; */
+}
+
+.topic-link {
+    text-decoration: none;
+    color: #FF9800;
+    /* background-color: #FF9800; */
+    border: solid 3px #FF9800;
+    border-radius: 5px;
+    padding: 15px;
+    width: 20%;
+    height: 50%;
+    margin-block: 10px;
+}
+
+.topic-link a {
+    text-decoration: none;
+    color: #FF9800;
+}
+
+.new-topic-form {
+    display: flex;
+    flex-direction: column;
+    /* width: 10%; */
+}
+
+.content-text {
+    border: solid 3px #FF9800;
+    color: #FF9800;
+    background-color: #263238;
+    border-radius: 5px;
+}
+
+.submit-button {
+    text-decoration: none;
+    color: #37474F;
+    background-color: #FF9800;
+    border-radius: 5px;
+    padding: 5px;
+    
+}

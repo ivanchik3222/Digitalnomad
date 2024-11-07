@@ -2,6 +2,7 @@
 from flask import request, redirect, url_for, flash, render_template
 from flask_login import login_user, logout_user
 from auth_service import register_user, authenticate_user
+from db import get_db
 
 def register():
     if request.method == 'POST':
@@ -35,6 +36,12 @@ def logout():
     logout_user()
     flash('You have been logged out.')
     return redirect(url_for('login'))
+
+def get_name(id):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT name FROM users WHERE id = ?", (id,))
+    return cursor.fetchone()
 
 if __name__ == '__main__':
     print("nuh uh")

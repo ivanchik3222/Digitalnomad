@@ -37,17 +37,17 @@
         <ul>
             {% for comment in comments %}
                 <li>
-                    <p>{{ comment[1] }}</p>
-                    <small>{{ comment[2] }}</small>
+                    <p style=" word-wrap: break-word;">{{ comment[1] }}</p>
+                    <!-- <small>{{ comment[2] }}</small> -->
                 </li>
             {% endfor %}
         </ul>
 
         {% if current_user.is_authenticated %}
-        <form method="post">
+        <form method="post" class="new-topic-form">
             <label for="content">Добавить комментарий:</label>
-            <textarea name="content" id="content" required></textarea>
-            <button type="submit">Отправить</button>
+            <textarea name="content" class="content-text" required></textarea>
+            <button type="submit" class="submit-button">Отправить</button>
         </form>
 
         {% else %}

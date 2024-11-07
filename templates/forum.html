@@ -27,11 +27,15 @@
     </header>
     
     <h1>Форум</h1>
-<a href="/forum/new">Создать новую тему</a>
+<a href="/forum/new" class="new-topic-button"><strong>Хотите создать новую тему?</strong></a>
+    <h2>Существующие темы:</h2>
 <ul>
     {% for topic in topics %}
-        <li>
-            <a href="/forum/topic/{{ topic[0] }}">{{ topic[1] }}</a> — {{ topic[3] }}
+        <li class="topic-link">
+            <a href="/forum/topic/{{ topic[0] }}" >
+                <p>{{ topic[1] }}</p>
+            </a>
+            
         </li>
     {% endfor %}
 </ul>

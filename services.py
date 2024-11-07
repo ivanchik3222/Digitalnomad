@@ -37,6 +37,13 @@ def add_service():
         return redirect(url_for('services'))
     return render_template('add_service.html')
 
+def delete_service(id):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM services WHERE id = ?", (id,))
+    db.commit()
+    return redirect(url_for('services'))
+
 
 if __name__ == '__main__':
     print("nuh uh")
